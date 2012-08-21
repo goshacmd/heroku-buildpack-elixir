@@ -3,5 +3,5 @@
 cat << EOF
 ---
 config_vars:
-  PATH: /app/otp/bin:bin:/usr/bin:/bin
+  PATH: /app/otp/bin:/app/ex/bin:bin:/usr/bin:/bin
 EOF

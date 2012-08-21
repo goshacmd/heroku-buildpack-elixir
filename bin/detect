@@ -1,11 +1,8 @@
 #!/bin/sh
 
-# this pack is valid for apps with a rebar.config or ebin dir in the root
-if [ -f $1/rebar.config ]; then
-  echo "Erlang"
-  exit 0
-elif [ -d $1/ebin ]; then
-  echo "Erlang"
+# this pack is valid for apps with a mix.exs in the root
+if [ -f $1/mix.exs ]; then
+  echo "Elixir"
   exit 0
 else
   exit 1
