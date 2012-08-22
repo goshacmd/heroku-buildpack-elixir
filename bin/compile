@@ -59,6 +59,7 @@ PATH=/app/otp/bin:$PATH
 if [ ! -e "rebar" ]; then
   echo "-----> Installing Rebar from buildpack"
   cp ${bpdir}/opt/rebar $build
+  PATH=${bpdir}/opt:$PATH
 fi
 
 echo "-----> Using Elixir $ex_ver"
@@ -85,7 +86,7 @@ echo "-------> Installing Elixir $ex_ver"
   set -e
 
   cd ${EXROOT}
-  make > /dev/null
+  make
 )
 
 ln -s ${EXROOT} /app/ex
