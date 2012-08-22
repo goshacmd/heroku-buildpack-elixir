@@ -86,7 +86,7 @@ echo "-------> Installing Elixir $ex_ver"
   set -e
 
   cd ${EXROOT}
-  make
+  make > /dev/null
 )
 
 ln -s ${EXROOT} /app/ex
