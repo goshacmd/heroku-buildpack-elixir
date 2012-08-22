@@ -72,7 +72,8 @@ echo "-----> Using Elixir $ex_ver"
   rm -rf ${cache}/* # be sure not to build up cruft
   cd ${cache}
   echo "-------> Fetching Elixir $ex_ver"
-  (curl -LsO ${ELIXIR_TARBALL_URL} > $ex_tarball) || exit 1
+  curl -LsO ${ELIXIR_TARBALL_URL} -o $ex_tarball || exit 1
+  mv $ex_ver $ex_tarball
 )
 
 echo "-------> Unpacking Elixir $ex_ver"
