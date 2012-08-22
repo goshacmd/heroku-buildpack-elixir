@@ -91,7 +91,7 @@ echo "-------> Installing Elixir $ex_ver"
 
 ln -s ${EXROOT} /app/ex
 
-PATH=$PATH:/app/ex
+PATH=/app/ex:$PATH
 
 cd $build
 
