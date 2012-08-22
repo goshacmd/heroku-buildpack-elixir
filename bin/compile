@@ -72,12 +72,12 @@ echo "-----> Using Elixir $ex_ver"
   rm -rf ${cache}/* # be sure not to build up cruft
   cd ${cache}
   echo "-------> Fetching Elixir $ex_ver"
-  curl -sO ${ELIXIR_TARBALL_URL} -o $ex_tarball || exit 1
+  curl -LsO ${ELIXIR_TARBALL_URL} -o $ex_tarball || exit 1
 )
 
 echo "-------> Unpacking Elixir $ex_ver"
 mkdir -p ${EXROOT}
-tar xf ${cache}/${ex_tarball} -C ${EXROOT}
+tar xf ${cache}/${ex_tarball} -C ${EXROOT} --strip-components=1
 echo "-------> Installing Elixir $ex_ver"
 
 (
