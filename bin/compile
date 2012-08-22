@@ -24,24 +24,24 @@ erl_tarball=${erl_ver}.tgz
 OTP_TARBALL_URL="https://s3.amazonaws.com/heroku-buildpack-erlang/${erl_tarball}"
 ERLROOT=${build}/otp
 
-DEFAULT_ELIXIR_VERSION="0.6.0"
+DEFAULT_ELIXIR_VERSION="master"
 ex_ver=${DEFAULT_ELIXIR_VERSION}
-ex_zipball=v${ex_ver}.zip
-ELIXIR_ZIPBALL_URL="https://github.com/downloads/elixir-lang/elixir/${ex_zipball}"
+ex_tarball=${ex_ver}.tar
+ELIXIR_TARBALL_URL="https://github.com/elixir-lang/elixir/tarball/${ex_ver}"
 EXROOT=${build}/ex
 
 echo "-----> Using Erlang/OTP $erl_ver"
 
 (
-    set -e
+  set -e
 
-    # Already cached?
-    test -f ${cache}/${erl_tarball} && exit
+  # Already cached?
+  test -f ${cache}/${erl_tarball} && exit
 
-    rm -rf ${cache}/* # be sure not to build up cruft
-    cd ${cache}
-    echo "-------> Fetching Erlang/OTP $erl_ver"
-    curl -sO ${OTP_TARBALL_URL} || exit 1
+  rm -rf ${cache}/* # be sure not to build up cruft
+  cd ${cache}
+  echo "-------> Fetching Erlang/OTP $erl_ver"
+  curl -sO ${OTP_TARBALL_URL} || exit 1
 )
 
 echo "-------> Unpacking Erlang/OTP $erl_ver"
@@ -61,21 +61,29 @@ fi
 echo "-----> Using Elixir $ex_ver"
 
 (
-    set -e
+  set -e
 
-    # Already cached?
-    test -f ${cache}/${ex_tarball} && exit
+  # Already cached?
+  test -f ${cache}/${ex_tarball} && exit
 
-    rm -rf ${cache}/* # be sure not to build up cruft
-    cd ${cache}
-    echo "-------> Fetching Elixir $ex_ver"
-    curl -sO ${ELIXIR_ZIPBALL_URL} || exit 1
+  rm -rf ${cache}/* # be sure not to build up cruft
+  cd ${cache}
+  echo "-------> Fetching Elixir $ex_ver"
+  curl -sO ${ELIXIR_TARBALL_URL} -o $ex_tarball || exit 1
 )
 
 echo "-------> Unpacking Elixir $ex_ver"
 mkdir -p ${EXROOT}
-unzip ${cache}/${ex_zipball} -d ${EXROOT} -qq
+tar zxf ${cache}/${ex_tarball} -C ${EXROOT}
 echo "-------> Installing Elixir $ex_ver"
+
+(
+  set -e
+
+  cd ${EXROOT}
+  make > /dev/null
+)
+
 ln -s ${EXROOT} /app/ex
 
 PATH=$PATH:/app/ex

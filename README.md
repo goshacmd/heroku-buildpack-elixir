@@ -36,7 +36,12 @@ If no version is explicitly specified, `master` will be used.
 
 ### Elixir version
 
-The application will be compiled and run using Elixir v0.6.0 and Mix.
+The application will be compiled and run using Elixir master (v0.7.0.dev at the
+time) and Mix.
+
+You can specify custom branch or tag name from the
+https://github.com/elixir-lang/elixir repository in the
+`.preferred_elixir_version` dotfile.
 
 ### Bundling
 
