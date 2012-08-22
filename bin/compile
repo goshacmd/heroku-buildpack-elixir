@@ -100,14 +100,14 @@ unset GIT_DIR
 
 echo "-----> Bundling dependencies"
 mix deps.get 2>&1 | indent
-if [ ${PIPESTATUS[0]} -ne 0 ];
+if [ ${PIPESTATUS[0]} -ne 0 ]; then
   "-----> Build failed"
   exit 1
 fi
 
 echo "-----> Compiling app"
 mix compile 2>&1 | indent
-if [ ${PIPESTATUS[0]} -ne 0 ];
+if [ ${PIPESTATUS[0]} -ne 0 ]; then
   "-----> Build failed"
   exit 1
 else
