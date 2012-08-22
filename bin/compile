@@ -77,7 +77,7 @@ echo "-----> Using Elixir $ex_ver"
 
 echo "-------> Unpacking Elixir $ex_ver"
 mkdir -p ${EXROOT}
-tar zxf ${cache}/${ex_tarball} -C ${EXROOT}
+tar xf ${cache}/${ex_tarball} -C ${EXROOT}
 echo "-------> Installing Elixir $ex_ver"
 
 (
