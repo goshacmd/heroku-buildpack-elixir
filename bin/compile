@@ -25,7 +25,10 @@ OTP_TARBALL_URL="https://s3.amazonaws.com/heroku-buildpack-erlang/${erl_tarball}
 ERLROOT=${build}/otp
 
 DEFAULT_ELIXIR_VERSION="master"
-ex_ver=${DEFAULT_ELIXIR_VERSION}
+if [ -f ${build}/.preferred_elixir_version ]; then
+  ELIXIR_VERSION=$(cat ${build}/.preferred_elixir_version)
+fi
+ex_ver=${ELIXIR_VERSION:=${DEFAULT_ELIXIR_VERSION}}
 ex_tarball=${ex_ver}.tar
 ELIXIR_TARBALL_URL="https://github.com/elixir-lang/elixir/tarball/${ex_ver}"
 EXROOT=${build}/ex
