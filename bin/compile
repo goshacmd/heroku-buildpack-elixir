@@ -102,4 +102,4 @@ echo "-----> Bundling dependencies"
 mix deps.get 2>&1 | indent
 
 echo "-----> Compiling app"
-mix compile 2>&1 | indent
+MIX_ENV=prod mix compile 2>&1 | indent
