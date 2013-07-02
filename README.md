@@ -43,6 +43,15 @@ You can specify custom branch or tag name from the
 https://github.com/elixir-lang/elixir repository in the
 `.preferred_elixir_version` dotfile.
 
+### Setup a Procfile
+
+Heroku needs a Procfile in order to run your application. Create a Procfile with a `web` process defined:
+
+    $ echo 'web: MIX_ENV=prod mix server -p $PORT' > Procfile
+    
+**Important Note:** Single quotes are important here. `$PORT` is an environment variable supplied by Heroku. If you use double quotes 
+in the above `echo` call, your local shell will try to interpolate the contents, and you'll end up with `-p ` and not `-p $PORT`.
+
 ### Bundling
 
 `heroku-elixir-buildpack` supports only applications which use
