@@ -4,4 +4,5 @@ cat << EOF
 ---
 config_vars:
   PATH: /app/otp/bin:/app/ex/bin:bin:/usr/bin:/bin
+  MIX_ENV: prod
 EOF

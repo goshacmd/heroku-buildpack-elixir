@@ -5,11 +5,15 @@ This is a Heroku buildpack for Elixir apps. It uses
 
 ### Configure your Heroku App
 
-    $ heroku config:add BUILDPACK_URL="https://github.com/goshakkk/heroku-buildpack-elixir.git" -a YOUR_APP
+```bash
+$ heroku config:add BUILDPACK_URL="https://github.com/goshakkk/heroku-buildpack-elixir.git" -a YOUR_APP
+```
 
 or
 
-    $ heroku create --buildpack "https://github.com/goshakkk/heroku-buildpack-elixir.git"
+```bash
+$ heroku create --buildpack "https://github.com/goshakkk/heroku-buildpack-elixir.git"
+```
 
 ### Select an Erlang version
 
@@ -29,8 +33,10 @@ Currently supported OTP versions:
 
 To select the version for your app:
 
-    $ echo OTP_R15B02 > .preferred_otp_version
-    $ git commit "Select R15B02 as preferred OTP version" .preferred_otp_version
+```bash
+$ echo OTP_R15B02 > .preferred_otp_version
+$ git commit "Select R15B02 as preferred OTP version" .preferred_otp_version
+```
 
 If no version is explicitly specified, `master` will be used.
 
@@ -47,8 +53,12 @@ https://github.com/elixir-lang/elixir repository in the
 
 Heroku needs a Procfile in order to run your application. Create a Procfile with a `web` process defined:
 
-    $ echo 'web: MIX_ENV=prod mix server -p $PORT' > Procfile
-    
+```bash
+$ echo 'web: mix server -p $PORT' > Procfile
+```
+
+The buildpack sets `MIX_ENV=prod` so you don't have to.
+
 **Important Note:** Single quotes are important here. `$PORT` is an environment variable supplied by Heroku. If you use double quotes 
 in the above `echo` call, your local shell will try to interpolate the contents, and you'll end up with `-p ` and not `-p $PORT`.
 
@@ -60,6 +70,8 @@ dependencies.
 
 ### Build your Heroku App
 
-    $ git push heroku master
+```bash
+$ git push heroku master
+```
 
 You may need to write a new commit and push if your code was already up to date.
