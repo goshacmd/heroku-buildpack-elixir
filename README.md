@@ -65,7 +65,7 @@ in the above `echo` call, your local shell will try to interpolate the contents,
 ### Bundling
 
 `heroku-elixir-buildpack` supports only applications which use
-[Mix](http://elixir-lang.org/getting_started/mix.html) to manage
+[Mix](http://elixir-lang.org/getting_started/mix/1.html) to manage
 dependencies.
 
 ### Build your Heroku App
