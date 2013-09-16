@@ -1,7 +1,7 @@
 ## Heroku buildpack: Elixir
 
 This is a Heroku buildpack for Elixir apps. It uses
-[Mix](http://elixir-lang.org/getting_started/mix.html).
+[Mix](http://elixir-lang.org/getting_started/mix/1.html).
 
 ### Configure your Heroku App
 
