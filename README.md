@@ -25,25 +25,26 @@ binaries are available for.
 
 Currently supported OTP versions:
 
-* master (R15B02 pre)
-* master-pu (R16B pre)
-* OTP_R15B
-* OTP_R15B01
+* master (R17A)
+* OTP_R16B02
+* OTP_R16B01
+* OTP_R16B
+* OTP_R15B03
 * OTP_R15B02
+* OTP_R15B01
 
 To select the version for your app:
 
 ```bash
-$ echo OTP_R15B02 > .preferred_otp_version
-$ git commit "Select R15B02 as preferred OTP version" .preferred_otp_version
+$ echo OTP_R16B02 > .preferred_otp_version
+$ git commit -m "Select R16B02 as preferred OTP version" .preferred_otp_version
 ```
 
 If no version is explicitly specified, `master` will be used.
 
-### Elixir version
+### Select an Elixir version
 
-The application will be compiled and run using Elixir master (v0.7.0.dev at the
-time) and Mix.
+The application will be compiled and run using Elixir master and Mix.
 
 You can specify custom branch or tag name from the
 https://github.com/elixir-lang/elixir repository in the
@@ -59,7 +60,7 @@ $ echo 'web: mix server -p $PORT' > Procfile
 
 The buildpack sets `MIX_ENV=prod` so you don't have to.
 
-**Important Note:** Single quotes are important here. `$PORT` is an environment variable supplied by Heroku. If you use double quotes 
+**Important Note:** Single quotes are important here. `$PORT` is an environment variable supplied by Heroku. If you use double quotes
 in the above `echo` call, your local shell will try to interpolate the contents, and you'll end up with `-p ` and not `-p $PORT`.
 
 ### Bundling
