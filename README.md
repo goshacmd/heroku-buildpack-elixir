@@ -54,6 +54,8 @@ https://github.com/elixir-lang/elixir repository in the
 
 Heroku needs a Procfile in order to run your application. Create a Procfile with a `web` process defined:
 
+#### Dynamo
+
 ```bash
 $ echo 'web: mix server -p $PORT' > Procfile
 ```
@@ -62,6 +64,31 @@ The buildpack sets `MIX_ENV=prod` so you don't have to.
 
 **Important Note:** Single quotes are important here. `$PORT` is an environment variable supplied by Heroku. If you use double quotes
 in the above `echo` call, your local shell will try to interpolate the contents, and you'll end up with `-p ` and not `-p $PORT`.
+
+#### Cowboy
+
+```bash
+$ echo 'web: mix run --no-halt' > Procfile
+```
+
+You should bind to port specified in `PORT` environment variable:
+
+```elixir
+{ :ok, _ } = :cowboy.start_http(
+  :http, 100,
+  [port: port(System.get_env("PORT"))],
+  [env: [dispatch: dispatch]]
+)
+```
+
+```elixir
+def port(nil), do: 8080
+def port(value) do
+  binary_to_integer(value)
+end
+```
+
+**Important Note:** If you bind to any other port than the assigned one, your process will be killed with an R11 error code.
 
 ### Bundling
 
