@@ -113,7 +113,7 @@ echo "-----> Bundling dependencies"
 mix deps.get 2>&1 | indent
 
 echo "-----> Compiling app"
-MIX_ENV=prod mix compile 2>&1 | indent
+mix compile 2>&1 | indent
 
 mkdir ${build}/.profile.d
 echo "cd /app/${APP_NAME}" > ${build}/.profile.d/path.sh
