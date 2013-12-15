@@ -110,7 +110,7 @@ echo "-----> Building with Mix"
 unset GIT_DIR
 
 echo "-----> Bundling dependencies"
-mix deps.get 2>&1 | indent
+MIX_ENV=prod mix deps.get 2>&1 | indent
 
 echo "-----> Compiling app"
 MIX_ENV=prod mix compile 2>&1 | indent
